@@ -9,9 +9,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.TileMode
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -19,32 +22,60 @@ import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest
 import coil.size.Scale
 import com.example.magicapp.data.remote.Card
+import com.example.magicapp.ui.theme.Planewalker
 
 @Composable
 fun CardDisplayScreen(card: Card) {
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text(card.name) },
-                backgroundColor = MaterialTheme.colors.primary,
-                contentColor = Color.White
+                title = {
+                    Box(
+                        modifier = Modifier.fillMaxSize(),
+                        contentAlignment = Alignment.Center
+                    ) {
+                        Text(
+                            text = card.name,
+                            style = TextStyle(
+                                fontFamily = Planewalker,
+                                fontWeight = FontWeight.Normal,
+                                fontSize = 27.sp,
+                                brush = Brush.linearGradient(
+                                    colors = listOf(Color.Gray, Color.LightGray),
+                                    tileMode = TileMode.Clamp
+                                )
+                            )
+                        )
+                    }
+                },
+                backgroundColor = Color(0xFF121212), // Black background color
+                contentColor = Color.White,
+                elevation = 8.dp,
+                modifier = Modifier.height(80.dp) // Adjust height if necessary
             )
         },
-        content = {
+        content = { innerPadding ->
             Column(
                 modifier = Modifier
                     .fillMaxSize()
-                    .padding(16.dp),
+                    .padding(innerPadding)
+                    .background(
+                        brush = Brush.linearGradient(
+                            colors = listOf(Color.Gray, Color.LightGray),
+                            tileMode = TileMode.Clamp
+                        )
+                    )
+                    .padding(16.dp), // Additional padding if needed
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 card.imageUrl?.let { imageUrl ->
-                    Card(
+                    Box(
                         modifier = Modifier
                             .fillMaxWidth()
                             .height(300.dp)
                             .clip(RoundedCornerShape(8.dp))
-                            .background(MaterialTheme.colors.surface),
-                        elevation = 8.dp
+                            .background(Color.Transparent),
+                        contentAlignment = Alignment.Center
                     ) {
                         Image(
                             painter = rememberAsyncImagePainter(
@@ -57,8 +88,10 @@ fun CardDisplayScreen(card: Card) {
                                     .build()
                             ),
                             contentDescription = null,
-                            modifier = Modifier.fillMaxSize(),
-                            contentScale = ContentScale.Fit
+                            modifier = Modifier
+                                .fillMaxSize()
+                                .clip(RoundedCornerShape(8.dp)),
+                            contentScale = ContentScale.Fit // Ensures the image fits within the box
                         )
                     }
                     Spacer(modifier = Modifier.height(16.dp))

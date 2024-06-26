@@ -46,7 +46,7 @@ fun MagicApp(viewModel: CardViewModel = viewModel()) {
                 backgroundColor = Color(0xFF121212),
                 contentColor = Color.White,
                 elevation = 8.dp,
-                modifier = Modifier.height(80.dp)
+                modifier = Modifier.height(60.dp)
             ) {
                 Box(modifier = Modifier.fillMaxWidth()) {
                     if (currentDestination != "search") {
@@ -60,18 +60,12 @@ fun MagicApp(viewModel: CardViewModel = viewModel()) {
                             )
                         }
                     }
-                    Image(
-                        painter = painterResource(id = R.drawable.magic_icon),
-                        contentDescription = "Magic: The Gathering Icon",
-                        contentScale = ContentScale.Fit,
-                        modifier = Modifier.size(32.dp) // Adjust the size as needed
-                    )
                     Text(
                         text = "Magic: The Gathering",
                         style = TextStyle(
                             fontFamily = Planewalker,
                             fontWeight = FontWeight.Normal,
-                            fontSize = 28.sp,
+                            fontSize = 30.sp,
                             brush = Brush.linearGradient(
                                 colors = listOf(Color.Gray, Color.LightGray),
                                 tileMode = TileMode.Clamp
