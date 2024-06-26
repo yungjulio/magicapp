@@ -8,3 +8,7 @@ interface MagicApiService {
     @GET("v1/cards")
     suspend fun getCardByName(@Query("name") name: String): Response<CardResponse>
 }
+
+data class CardResponse(
+    val cards: List<Card>
+)

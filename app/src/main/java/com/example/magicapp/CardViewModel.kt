@@ -51,9 +51,9 @@ class CardViewModel(application: Application) : AndroidViewModel(application) {
 }
 
 fun Card.toEntity(): CardEntity {
-    return CardEntity(name, imageUrl, type, rarity)
+    return CardEntity(name, imageUrl, type, rarity, text, power, toughness, legality)
 }
 
 fun CardEntity.toCard(): Card {
-    return Card(name, imageUrl, type, rarity)
+    return Card(name, imageUrl, type, rarity, text, power, toughness, legality)
 }
