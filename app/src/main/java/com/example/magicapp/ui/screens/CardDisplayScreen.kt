@@ -38,8 +38,8 @@ fun CardDisplayScreen(card: Card) {
                 contentDescription = null,
                 modifier = Modifier
                     .fillMaxWidth()
-                    .aspectRatio(1.0f), // Adjust aspect ratio as needed
-                contentScale = ContentScale.Fit // Adjust the ContentScale as needed
+                    .aspectRatio(1.0f),
+                contentScale = ContentScale.Fit
             )
             Spacer(modifier = Modifier.height(8.dp))
         }

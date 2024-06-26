@@ -88,4 +88,5 @@ dependencies {
     implementation ("androidx.compose.runtime:runtime-livedata:1.1.1")
     implementation ("androidx.lifecycle:lifecycle-runtime-ktx:2.4.1")
     implementation ("androidx.lifecycle:lifecycle-viewmodel-compose:2.4.1")
+    implementation ("com.google.accompanist:accompanist-flowlayout:0.24.13-rc")
 }

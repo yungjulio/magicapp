@@ -2,30 +2,61 @@ package com.example.magicapp.ui.screens
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import coil.compose.rememberImagePainter
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.unit.dp
+import coil.compose.rememberAsyncImagePainter
+import coil.request.ImageRequest
+import coil.size.Scale
 import com.example.magicapp.data.local.CardEntity
 
 @Composable
 fun SavedCardsScreen(cards: List<CardEntity>, onCardClicked: (CardEntity) -> Unit) {
-    LazyColumn {
+    LazyVerticalGrid(
+        columns = GridCells.Fixed(2),
+        contentPadding = PaddingValues(8.dp),
+        modifier = Modifier.fillMaxSize()
+    ) {
         items(cards) { card ->
-            Card(card = card) {
-                onCardClicked(card)
-            }
+            CardGridItem(card = card, onClick = { onCardClicked(card) })
         }
     }
 }
 
 @Composable
-fun Card(card: CardEntity, onClick: () -> Unit) {
-    Column(modifier = Modifier.clickable { onClick() }) {
-        Text(card.name)
-        card.imageUrl?.let { Image(painter = rememberImagePainter(it), contentDescription = null) }
+fun CardGridItem(card: CardEntity, onClick: () -> Unit) {
+    Column(
+        modifier = Modifier
+            .padding(8.dp)
+            .clickable { onClick() }
+            .fillMaxWidth()
+    ) {
+        card.imageUrl?.let { imageUrl ->
+            Image(
+                painter = rememberAsyncImagePainter(
+                    model = ImageRequest.Builder(LocalContext.current)
+                        .data(imageUrl)
+                        .crossfade(true)
+                        .placeholder(android.R.drawable.ic_menu_report_image)
+                        .error(android.R.drawable.ic_menu_report_image)
+                        .scale(Scale.FILL)
+                        .build()
+                ),
+                contentDescription = null,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .aspectRatio(1.0f),
+                contentScale = ContentScale.Fit
+            )
+        }
+        Spacer(modifier = Modifier.height(4.dp))
+        Text(text = card.name, style = androidx.compose.material.MaterialTheme.typography.body1)
     }
 }
