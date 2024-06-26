@@ -61,10 +61,10 @@ fun SavedCardsScreen(cards: List<CardEntity>, onCardClicked: (CardEntity) -> Uni
                         )
                     }
                 },
-                backgroundColor = Color(0xFF121212), // Black background color
+                backgroundColor = Color(0xFF121212),
                 contentColor = Color.White,
                 elevation = 8.dp,
-                modifier = Modifier.height(80.dp) // Adjust height if necessary
+                modifier = Modifier.height(80.dp)
             )
         },
         content = { innerPadding ->
@@ -164,7 +164,6 @@ fun CardGridItem(card: CardEntity, onClick: () -> Unit) {
                     )
                 }
             }
-//            Spacer(modifier = Modifier.height(8.dp))
             Text(
                 text = card.name,
                 style = MaterialTheme.typography.body1.copy(

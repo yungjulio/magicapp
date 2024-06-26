@@ -6,7 +6,6 @@ import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.focus.onFocusEvent
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.TileMode
@@ -44,24 +43,24 @@ fun SearchScreen(viewModel: CardViewModel, navController: NavController) {
                         )
                     }
                 },
-                backgroundColor = Color(0xFF121212), // Black background color
+                backgroundColor = Color(0xFF121212),
                 contentColor = Color.White,
                 elevation = 8.dp,
-                modifier = Modifier.height(60.dp) // Adjust height if necessary
+                modifier = Modifier.height(60.dp)
             )
         },
         content = { innerPadding ->
             Column(
                 modifier = Modifier
                     .fillMaxSize()
-                    .padding(innerPadding) // Use innerPadding here
+                    .padding(innerPadding)
                     .background(
                         brush = Brush.linearGradient(
                             colors = listOf(Color.Gray, Color.LightGray),
                             tileMode = TileMode.Clamp
                         )
                     )
-                    .padding(16.dp) // Additional padding if needed
+                    .padding(16.dp)
             ) {
                 OutlinedTextField(
                     value = searchQuery,

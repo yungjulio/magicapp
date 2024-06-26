@@ -1,12 +1,10 @@
 package com.example.magicapp.ui
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
@@ -18,17 +16,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.TileMode
-import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import androidx.navigation.NavController
 import androidx.navigation.compose.*
 import com.example.magicapp.CardViewModel
-import com.example.magicapp.R
 import com.example.magicapp.ui.screens.CardDisplayScreen
 import com.example.magicapp.ui.screens.SavedCardsScreen
 import com.example.magicapp.ui.screens.SearchScreen
@@ -79,7 +73,7 @@ fun MagicApp(viewModel: CardViewModel = viewModel()) {
         content = { innerPadding ->
             Box(
                 modifier = Modifier
-                    .background(Color(0xFF121212)) // Custom non-pitch black background
+                    .background(Color(0xFF121212))
                     .padding(innerPadding)
             ) {
                 NavHost(navController, startDestination = "search") {

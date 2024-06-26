@@ -48,10 +48,10 @@ fun CardDisplayScreen(card: Card) {
                         )
                     }
                 },
-                backgroundColor = Color(0xFF121212), // Black background color
+                backgroundColor = Color(0xFF121212),
                 contentColor = Color.White,
                 elevation = 8.dp,
-                modifier = Modifier.height(80.dp) // Adjust height if necessary
+                modifier = Modifier.height(80.dp)
             )
         },
         content = { innerPadding ->
@@ -65,7 +65,7 @@ fun CardDisplayScreen(card: Card) {
                             tileMode = TileMode.Clamp
                         )
                     )
-                    .padding(16.dp), // Additional padding if needed
+                    .padding(16.dp),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 card.imageUrl?.let { imageUrl ->
@@ -91,7 +91,7 @@ fun CardDisplayScreen(card: Card) {
                             modifier = Modifier
                                 .fillMaxSize()
                                 .clip(RoundedCornerShape(8.dp)),
-                            contentScale = ContentScale.Fit // Ensures the image fits within the box
+                            contentScale = ContentScale.Fit
                         )
                     }
                     Spacer(modifier = Modifier.height(16.dp))
