@@ -19,7 +19,6 @@ abstract class AppDatabase : RoomDatabase() {
 
         private val MIGRATION_1_2 = object : Migration(1, 2) {
             override fun migrate(database: SupportSQLiteDatabase) {
-                // Create new table with the new schema
                 database.execSQL(
                     """
                     CREATE TABLE IF NOT EXISTS CardEntity_new (
@@ -35,7 +34,6 @@ abstract class AppDatabase : RoomDatabase() {
                     """.trimIndent()
                 )
 
-                // Copy the data from the old table to the new table
                 database.execSQL(
                     """
                     INSERT INTO CardEntity_new (name, imageUrl, type, rarity, text, power, toughness)
@@ -44,10 +42,8 @@ abstract class AppDatabase : RoomDatabase() {
                     """.trimIndent()
                 )
 
-                // Drop the old table
                 database.execSQL("DROP TABLE CardEntity")
 
-                // Rename the new table to the old table's name
                 database.execSQL("ALTER TABLE CardEntity_new RENAME TO CardEntity")
             }
         }
@@ -60,7 +56,7 @@ abstract class AppDatabase : RoomDatabase() {
                     "card_database"
                 )
                     .addMigrations(MIGRATION_1_2)
-                    .fallbackToDestructiveMigration() // Optional: Use only if data loss is acceptable
+                    .fallbackToDestructiveMigration()
                     .build()
                 INSTANCE = instance
                 instance
